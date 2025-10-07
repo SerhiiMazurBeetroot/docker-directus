@@ -1,0 +1,6 @@
+logs
+uploads
+.env
+.env.example
+.env.local
+.sh/*.log

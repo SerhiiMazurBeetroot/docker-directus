@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  #######################################
+  # Backend | Directus
+  #######################################
+  directus:
+    container_name: directus
+    build:
+      context: ./
+      args:
+        DIRECTUS_VERSION: ${DIRECTUS_VERSION}
+    env_file:
+      - .env
+    ports:
+      - ${APP_PORT}:8055
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+      - ./database:/directus/database
+      - ./templates:/directus/templates
+      - ./docs:/directus/docs
+    restart: always
+
+  #######################################
+  # nginx
+  #######################################
+  nginx:
+    image: nginx:latest
+    container_name: nginx_directus
+    ports:
+      - "80:80"
+    depends_on:
+      - directus
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+    restart: always
+
+volumes:
