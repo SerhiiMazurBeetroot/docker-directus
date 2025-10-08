@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="directus" src="./.sh/images/directus.png"  >
+  <img alt="directus" src="./.sh/images/docker-directus.png"  >
 </p>
 
 <p align="center" dir="auto">
